@@ -3,6 +3,7 @@ package org.example;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 public class Maven {
@@ -21,6 +22,10 @@ public class Maven {
         driver = new ChromeDriver();  //creating a chromedriver object
         driver.get("https://demo.nopcommerce.com/");// Navigating the web address
         driver.manage().window().maximize();//opening and customising window
+    }
+    @AfterMethod
+    public void closeBrowser() {
+        driver.quit();// to close webdriver session and window
     }
 
 
