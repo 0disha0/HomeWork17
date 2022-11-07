@@ -10,6 +10,9 @@ public class Maven {
     public void clickOnElement(By by) {
         driver.findElement(by).click();
     }
+    public void typeText(By by, String text) {
+        driver.findElement(by).sendKeys(text);
+    }
 
 
 
