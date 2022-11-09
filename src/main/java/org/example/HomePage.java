@@ -34,13 +34,19 @@ public class HomePage {
         driver.quit();// to close webdriver session and window
     }
 
-    public static void selectListByVisibleText(By by, String value){
+    //This method will check and send the select list by visible text
+    public  void selectListByVisibleText(By by, String value){
         Select select = new Select(driver.findElement(by));
         select.selectByVisibleText(value);
     }
-    public static void selectListByValue(By by, String value) {
+    //This method will check and send the select list value with select by value
+    public  void selectListByValue(By by, String value) {
         Select select = new Select(driver.findElement(by));
         select.selectByValue(value);
+    }
+    // This method will get the test value from element and printing it
+    public static String printMessage(By by){
+       return driver.findElement(by).getText();
     }
 
     @Test
@@ -51,25 +57,27 @@ public class HomePage {
         clickOnElement(By.id("gender-female"));//finding the element within the webpage as id(in locator) and clicking on it
         typeText(By.id("FirstName"),"Daisha");// finding the element with in the webpage as id(in locator) and adding data in it
         typeText(By.id("LastName"),"Kanani");// finding the element with in the webpage as id(in locator) and adding data in it
-        selectListByValue(By.name("DateOfBirthDay"),"10");
-        selectListByVisibleText(By.name("DateOfBirthMonth"),"February");
-        selectListByVisibleText(By.name("DateOfBirthYear"),"2000");
+        selectListByValue(By.name("DateOfBirthDay"),"10");// selecting the element with in the webpage as name(in locator) and adding text in it
+        selectListByVisibleText(By.name("DateOfBirthMonth"),"February");// selecting the element with in the webpage as name(in locator) and adding text in it
+        selectListByVisibleText(By.name("DateOfBirthYear"),"2000");// selecting the element with in the webpage as name(in locator) and adding text in it
         typeText(By.id("Email"),"dish" +timeStamp+ "kan@gamil.com");// finding the element with in the webpage as id(in locator) and adding data in it
         typeText(By.xpath("//input[@id=\"Company\"]"),"Unique private ltd.");// finding the element with in the webpage from xpath(in locator) and adding data in it
         typeText(By.id("Password"),"dish@5903");// finding the element with in the webpage as id(in locator) and adding data in it
         typeText(By.id("ConfirmPassword"),"dish@5903");// finding the element with in the webpage as id(in locator) and adding data in it
         clickOnElement(By.id("register-button"));//finding the element within the webpage as id(in locator) and clicking on it
-        String regMsg = driver.findElement(By.className("result")).getText(); // Storing string value after finding text in regMsg variable
+        String regMsg = printMessage(By.className("result")); // Storing string value after finding text in regMsg variable
         System.out.println(regMsg);// printing a stored data(text msg)
     }
+    // This method to get information of the product
     @Test
     public void toGetInformationAboutProduct() {
         clickOnElement(By.linkText("Computers"));//finding the element within the webpage from link text(in locator) and clicking on it
         clickOnElement(By.linkText("Desktops"));//finding the element within the webpage from link text(in locator) and clicking on it
 
-        String store = driver.findElement(By.className("center-2")).getText();// Storing string value after finding text in regMsg variable
+        String store = printMessage(By.className("center-2"));// Storing string value after finding text in regMsg variable
         System.out.println(store);// It prints out stored message variables
     }
+    // This method to verify user can comment on news successfully
     @Test
     public void toVerifyUserCanCommentOnNews() {
         clickOnElement(By.xpath("//div[@class='news-list-homepage']/div[2]/div[2]/div[3]//a"));// finding the element with in the webpage from xpath(in locator) and clicking on it
@@ -77,23 +85,36 @@ public class HomePage {
         typeText(By.className("enter-comment-text")," Thank you so much\nThat was a stunning news");// finding the element within the webpage as class(in locator) and adding daya in it
         clickOnElement(By.name("add-comment"));// finding the element with in the webpage as name(in locator) and clicking on it
 
-        String getMessage = driver.findElement(By.className("result")).getText();// Storing string value after finding text in regMsg variable
+        String getMessage = printMessage(By.className("result"));// Storing string value after finding text in regMsg variable
         System.out.println(getMessage);// printing a stored data(text msg)
     }
+    //This method to verify the name of the home page categories and when user click on the menu it should show the submenu or the page
     @Test
     public void toVerifyHomePageCategories() {
-        clickOnElement(By.linkText("Computers"));
-        clickOnElement(By.linkText("Electronics"));
-        clickOnElement(By.linkText("Apparel"));
-        clickOnElement(By.linkText("Digital downloads"));
-        clickOnElement(By.linkText("Books"));
-        clickOnElement(By.linkText("Jewelry"));
-        clickOnElement(By.linkText("Gift Cards"));
-        String categories = driver.findElement(By.className("header-menu")).getText(); //Storing a String variable
+        clickOnElement(By.linkText("Computers"));// finding the element with in the webpage as name(in locator) and clicking on it
+        clickOnElement(By.linkText("Electronics"));// finding the element with in the webpage as name(in locator) and clicking on it
+        clickOnElement(By.linkText("Apparel"));// finding the element with in the webpage as name(in locator) and clicking on it
+        clickOnElement(By.linkText("Digital downloads"));// finding the element with in the webpage as name(in locator) and clicking on it
+        clickOnElement(By.linkText("Books"));// finding the element with in the webpage as name(in locator) and clicking on it
+        clickOnElement(By.linkText("Jewelry"));// finding the element with in the webpage as name(in locator) and clicking on it
+        clickOnElement(By.linkText("Gift Cards"));// finding the element with in the webpage as name(in locator) and clicking on it
+        String categories = printMessage(By.className("header-menu")); //Storing a String variable
         System.out.println(categories); //Printing the String variable in console
     }
+    //This method to verify user can refer a product to the friend by email
+    @Test
+    public void toVerifyUserCanReferProductByEmailingFriend(){
+        clickOnElement(By.linkText("Apple MacBook Pro 13-inch"));//Passing unique locator and sending click action
+        clickOnElement(By.className("email-a-friend"));//Passing unique locator and sending click action
+        typeText(By.className("friend-email"),"F.R.I.E.N.D@gmail.com");//Passing unique locator and sending user value
+        typeText(By.id("YourEmailAddress"),"Myself@gmai.com");//Passing unique locator and sending user value
+        typeText(By.id("PersonalMessage"),"Hey!\nHow are you?\nI thought this might help you, and it has exclusive price to buys\n Don't be late to buy");//Passing unique locator and sending user value
+        clickOnElement(By.name("send-email"));//Passing unique locator and sending click action
 
-
+        String getMessage =printMessage(By.xpath("//div[@class=\"message-error validation-summary-errors\"]"));
+        //Storing the String value after getting the texts
+        System.out.println(getMessage); //Printing in console
+    }
 
 }
 
