@@ -62,6 +62,14 @@ public class HomePage {
         String regMsg = driver.findElement(By.className("result")).getText(); // Storing string value after finding text in regMsg variable
         System.out.println(regMsg);// printing a stored data(text msg)
     }
+    @Test
+    public void toGetInformationAboutProduct() {
+        clickOnElement(By.linkText("Computers"));//finding the element within the webpage from link text(in locator) and clicking on it
+        clickOnElement(By.linkText("Desktops"));//finding the element within the webpage from link text(in locator) and clicking on it
+
+        String store = driver.findElement(By.className("center-2")).getText();// Storing string value after finding text in regMsg variable
+        System.out.println(store);// It prints out stored message variables
+    }
 
 }
 
