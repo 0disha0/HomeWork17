@@ -80,7 +80,18 @@ public class HomePage {
         String getMessage = driver.findElement(By.className("result")).getText();// Storing string value after finding text in regMsg variable
         System.out.println(getMessage);// printing a stored data(text msg)
     }
-    
+    @Test
+    public void toVerifyHomePageCategories() {
+        clickOnElement(By.linkText("Computers"));
+        clickOnElement(By.linkText("Electronics"));
+        clickOnElement(By.linkText("Apparel"));
+        clickOnElement(By.linkText("Digital downloads"));
+        clickOnElement(By.linkText("Books"));
+        clickOnElement(By.linkText("Jewelry"));
+        clickOnElement(By.linkText("Gift Cards"));
+        String categories = driver.findElement(By.className("header-menu")).getText(); //Storing a String variable
+        System.out.println(categories); //Printing the String variable in console
+    }
 
 
 
