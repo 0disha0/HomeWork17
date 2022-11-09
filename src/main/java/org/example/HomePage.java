@@ -70,6 +70,19 @@ public class HomePage {
         String store = driver.findElement(By.className("center-2")).getText();// Storing string value after finding text in regMsg variable
         System.out.println(store);// It prints out stored message variables
     }
+    @Test
+    public void toVerifyUserCanCommentOnNews() {
+        clickOnElement(By.xpath("//div[@class='news-list-homepage']/div[2]/div[2]/div[3]//a"));// finding the element with in the webpage from xpath(in locator) and clicking on it
+        typeText(By.className("enter-comment-title"),"News");// finding the element within the webpage as class(in locator) and adding daya in it
+        typeText(By.className("enter-comment-text")," Thank you so much\nThat was a stunning news");// finding the element within the webpage as class(in locator) and adding daya in it
+        clickOnElement(By.name("add-comment"));// finding the element with in the webpage as name(in locator) and clicking on it
+
+        String getMessage = driver.findElement(By.className("result")).getText();// Storing string value after finding text in regMsg variable
+        System.out.println(getMessage);// printing a stored data(text msg)
+    }
+    
+
+
 
 }
 
